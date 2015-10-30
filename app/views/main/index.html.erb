@@ -1,4 +1,4 @@
-<h1 class="title">Most Efficient Skill App</h1>
+<h1 class="title">Most Efficient Skill App - DPS Calculator</h1>
 
 <div id="welcome">Hello and welcome to the League DPS calculator! Feel free to use as many times as you would like! Please only press the "Update/Populate Database" if you have never pressed it before or a new patch was just released. For more information on how the calculator works, please click <%= link_to "here!", explanation_path %></div>
 
@@ -63,7 +63,7 @@
   <%= form_tag do %>
     <%= submit_tag("Update/Populate Database", { :class=>"button databaseButton" }) %>
   <% end %>
-  <button id="skillButton">Find the Most Efficient Skill!</button>
+  <button id="skillButton" disabled>Find the Most Efficient Skill!</button>
 </div>
 
 <div id="results" class="row">

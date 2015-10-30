@@ -77,7 +77,7 @@
 <div id="notes">
   <h3 class="sectionTitle">Things I Noticed</h3>
   <ul class="listNotes">
-    <li>All of Lux's spells have no "effect" or "effectBurn" in the "spells" key. Therefore, all of Lux's DPS calculations will be inaccurate. I have posted about this on the Riot Developer Forums and I am currently awaiting a response.</li>
+    <li>All of Lux's spells have no "effect" or "effectBurn" in the "spells" key. Therefore, all of Lux's DPS calculations will be inaccurate. I have <%= link_to "posted about this", "https://developer.riotgames.com/discussion/community-discussion/show/7EF5aeba" %> on the Riot Developer Forums and I am currently awaiting a response.<br /><span class="key">Edit</span>:I have gotten a response from the forum post, and it appears that there are more variables missing than I realized. A whole list of missing information from the JSON response are listed <%= link_to "here", "https://developer.riotgames.com/discussion/bugs-feedback/show/3wU5Q4hE" %>.</li>
     <li>Some spells need more than AD, AP, and CDR to change how much damage they do. Because of this, I added optional input fields to accommodate all spells. For a more accurate use of the DPS calculator, please fill in all input fields.</li>
   </ul>
 </div>

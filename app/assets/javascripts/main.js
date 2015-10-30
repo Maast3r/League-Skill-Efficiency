@@ -1,8 +1,7 @@
 var riotImgPath = "http://ddragon.leagueoflegends.com/cdn/5.21.1/img/spell/";
-
+$(document).foundation();
 window.onload = function(){
-  $("#skillButton").attr("disabled", "disabled");
-  var  results = [];
+  var results = [];
 
   var adInput, apInput, cdrInput, hpInput, armorInput,
     mrInput, levelSelecte, levelSelectValue,
@@ -179,9 +178,6 @@ window.onload = function(){
       dmg += scale * (champSpell.AD - champSpell.baseAD);
     } else if(type == "@special.jaxrmr"){
       dmg += scale * champSpell.AP;
-    } else if(type == "@dynamic.attackdamage"){
-      dmg += 0;
-      //change MainController to allow array sized scaling
     } else if(type == "armor"){
       dmg += scale * champSpell.armor;
     } else if(type == "health"){

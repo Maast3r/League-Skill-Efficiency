@@ -16,6 +16,11 @@
  *= require font-awesome
  */
 
+ ::selection {
+    background: #d33682;
+    color: white;
+}
+
  .title{
    text-align: center;
  }
