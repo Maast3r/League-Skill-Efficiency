@@ -1,17 +1,17 @@
 require 'concurrent'
 require 'json'
-class Object;
-  def ensure_array;
+class Object
+  def ensure_array
     [self]
   end
 end
-class Array;
-  def ensure_array;
+class Array
+  def ensure_array
     to_a
   end
 end
-class NilClass;
-  def ensure_array;
+class NilClass
+  def ensure_array
     to_a
   end
 end
@@ -22,6 +22,7 @@ class MainController < ApplicationController
   @@champion_request_path = "/api/lol/static-data/na/v1.2/champion"
   def index
     @skills = Skill.all
+    puts Skill.all.to_json
   end
   def populate_database
     getChamps
