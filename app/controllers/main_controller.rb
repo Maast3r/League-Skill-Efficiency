@@ -22,6 +22,7 @@ class MainController < ApplicationController
   @@champion_request_path = "/api/lol/static-data/na/v1.2/champion"
   def index
     @skills = Skill.all
+    puts "index"
     puts Skill.all.to_json
   end
   def populate_database
