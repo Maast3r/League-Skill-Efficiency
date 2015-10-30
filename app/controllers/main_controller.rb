@@ -23,7 +23,7 @@ class MainController < ApplicationController
   def index
     @skills = Skill.all
     puts "index"
-    puts Skill.all.to_json
+    logger.error Skill.all.to_json
   end
   def populate_database
     getChamps
