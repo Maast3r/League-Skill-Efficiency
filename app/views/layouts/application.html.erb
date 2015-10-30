@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Most Efficient Skills</title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= if Rails.env.production? %>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga(‘set’, ‘&uid’, {{USER_ID}}); // Set the user ID using signed-in user_id.
+      ga('create', 'UA-69467677-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <% end %>
+  </head>
+
+  <body>
+    <nav id="nav" class="top-bar" data-topbar role="navigation">
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <li class="has-dropdown">
+              <a href="#">Andrew Ma</a>
+              <ul class="dropdown">
+                <li><a href="https://www.linkedin.com/in/softwarelover">Andrew's LinkedIn</a></li>
+                <li><a href="https://github.com/Maast3r">Andrew's GitHub</a></li>
+                <li><a href="http://www.rose-hulman.edu/~maas/">Andrew's Website</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <!-- Left Nav Section -->
+          <ul class="left">
+            <li><%= link_to "DPS Calculator", main_index_path %></li>
+            <li><%= link_to "Calculation Explanation", explanation_path %></li>
+          </ul>
+        </section>
+      </nav>
+    <%= yield %>
+
+    <div id="footer">
+      <div id="foot" class="row">
+        <span class="small-9 small-centered columns">If you find any bugs with Most Efficient Skill, please email them to maastergotmail@gmail.com. Most Efficient Skill is not endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</span>
+      </div>
+    </div>
+  </body>
+</html>

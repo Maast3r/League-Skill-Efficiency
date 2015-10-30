@@ -1,0 +1,83 @@
+<h1 class="title">Calculation Explanation</h1>
+
+<div class="explanation">
+  <div class="expTop">To get all the data to do the spell DPS calculations, I used the Riot Games API. I call the /api/lol/static-data/{region}/v1.2/champion API call so I can get specific champion/spell related data for every champ/spell in the game. The Riot API gave a JSON response in which spells looked like this:</div>
+  <pre class="exampleSpell">
+    <span class="champName"style="color:#999">/* Thresh */</span>
+    "spells": [
+      {
+          <span class="key">"name"</span>: <span class="data">"Death Sentance"</span>,
+          <span class="key">"leveltip"</span>:{
+            <span class="labels">"label"</span>:[
+              <span class="data">"Damage"</span>,
+              <span class="data">"Cooldown"</span>
+            ],
+            <span class="key">"effect"</span>:[
+              <span class="data">"{{ e1 }} -> {{ e1NL }}"</span>,
+              <span class="data">"{{ cooldown }} -> {{ cooldownNL }}"</span>
+            ]
+          },
+          <span class="key">"cooldown"</span>: [
+            <span class="data">20</span>,
+            <span class="data">18</span>,
+            <span class="data">16</span>,
+            <span class="data">14</span>,
+            <span class="data">12</span>
+          ],
+          <span class="key">"effect"</span>: [
+            <span class="data">null</span>,
+            [
+              <span class="data">80</span>,
+              <span class="data">120</span>,
+              <span class="data">160</span>,
+              <span class="data">200</span>,
+              <span class="data">240</span>
+            ],
+            [
+              <span class="data">1</span>,
+              <span class="data">1.25</span>,
+              <span class="data">1.5</span>,
+              <span class="data">1.75</span>,
+              <span class="data">2</span>
+            ],
+            [
+              <span class="data">80</span>,
+              <span class="data">110</span>,
+              <span class="data">140</span>,
+              <span class="data">170</span>,
+              <span class="data">200</span>
+            ],
+            [
+              <span class="data">3</span>,
+              <span class="data">3</span>,
+              <span class="data">3</span>,
+              <span class="data">3</span>,
+              <span class="data">3</span>
+            ],
+          ],
+          <span class="key">"vars"</span>: [
+            {
+              <span class="labels">"key"</span>: <span class="data">"a1"</span>,
+              <span class="labels">"link"</span>: <span class="data">"spelldamage"</span>,
+              <span class="labels">"coeff"</span>: [
+                <span class="data">0.5</span>
+              ]
+            }
+          ]
+      }
+    ]
+  </pre>
+  <div class="exampleAfter">For more detailed information on how spell damages are organized, go to the <a href="https://developer.riotgames.com/docs/static-data">Riot Games Static Data</a> page.</div>
+  <h3 class="sectionTitle">How I Did It</h3>
+  <div class="expMid">Now, to calculate the DPS (Damage Per Second) of a spell, I use the spell level to determine which base damage value I should use. Next, I calculate the addtional bonuses for that spell. For example, Thresh's Q, shown above, has 0.5 * total ability power as the bonus damage. Spell bonuses always have "links" that denote what type of bonus the spell gets. This is how I know how to calculate the spell bonuses. <br /><br />Here's an example of how I calculated Thresh's Q damage:<br/> I use the <span class="variable">Damage</span> = base damage + 0.5 * total ability power. I then find the <span class="variable">cooldown</span> of Thresh's Q at its current level. I also get the <span class="variable">CDR</span> from an input field on the calculator page. To find how much damage Thresh's Q does per second, I simply do DPS = <span class="variable">Damage</span>/[(1 - <span class="variable">CDR</span>) * <span class="variable">cooldown</span>]</div>
+  <h3 class="sectionTitle">What Is "Efficiency"?</h3>
+  <div class="expBot">When I calculate "efficiency" of a spell, I sum up all the effects/abilities that do anything related to healing or damage. If a spell, for example Rengar's W, does damage and healing, Rengar's W DPS is the sum of the amount healed and damage done. I ignored all CC (crowd control) when calculating efficiency of the spell. I also discard all special attributes of the spell that can't exactly be measured. For example, Thresh's Q has a 3s less CD if he lands the hook, but there is no garuntee that Thresh will actually land the hook and get this special cooldown reduction. Therefore, all DPS calculations only consider health healed and damage done.</div>
+</div>
+
+<div id="notes">
+  <h3 class="sectionTitle">Things I Noticed</h3>
+  <ul class="listNotes">
+    <li>All of Lux's spells have no "effect" or "effectBurn" in the "spells" key. Therefore, all of Lux's DPS calculations will be inaccurate. I have posted about this on the Riot Developer Forums and I am currently awaiting a response.</li>
+    <li>Some spells need more than AD, AP, and CDR to change how much damage they do. Because of this, I added optional input fields to accommodate all spells. For a more accurate use of the DPS calculator, please fill in all input fields.</li>
+  </ul>
+</div>

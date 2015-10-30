@@ -1,0 +1,86 @@
+<h1 class="title">Most Efficient Skill App</h1>
+
+<div id="welcome">Hello and welcome to the League DPS calculator! Feel free to use as many times as you would like! Please only press the "Update/Populate Database" if you have never pressed it before or a new patch was just released. For more information on how the calculator works, please click <%= link_to "here!", explanation_path %></div>
+
+<div id="note">*Please note that negative values may appear in the DPS table. This is because this spell uses bonus Attack Damage, which is total AD (Attack Damage) - Champion Base AD. If the AD you input is less than the Champion Base AD, you will get a negative value; this is intentional.</div>
+
+<div id="inputForm">
+  <div class="leftInput">
+    <label for="adInput">AD (<span class="required">required</span>)</label>
+    <input id="adInput" type="text" placeholder="(ex: 100)" />
+    <label for="hpInput">HP (optional)</label>
+    <input id="hpInput" type="text" placeholder="(ex:1000 default: 0)" />
+    <label for="mrInput">MR (optional)</label>
+    <input id="mrInput" type="text" placeholder="(ex: 80 default: 0)" />
+  </div>
+  <div class="rightInput">
+    <label for="apInput">AP (<span class="required">required</span>)</label>
+    <input id="apInput" type="text" placeholder="(ex: 100)" />
+    <label for="armorInput">Armor (optional)</label>
+    <input id="armorInput" type="text" placeholder="(ex: 90 default: 0)" />
+    <label for="cdrInput">CDR (<span class="required">required</span>)</label>
+    <input id="cdrInput" type="text" placeholder="(ex: 0.2 range 0-0.4)" />
+  </div>
+</div>
+
+  <div class="selectWrapper">
+    <!-- <label for="skillLevel">Skill Level (optional)</label> -->
+    <select name="skillLevel" id="skillLevel">
+      <option value="1">Please Select a Skill Level (optional) (default: 1)</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
+    <!-- <label for="champLevel">Champion Level (optional)</label> -->
+    <select name="champLevel" id="champLevel">
+      <option value="1">Please Select a Champion Level (optional) (default: 1)</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+    </select>
+  </div>
+</div>
+
+<div id="buttonWrapper">
+  <%= form_tag do %>
+    <%= submit_tag("Update/Populate Database", { :class=>"button databaseButton" }) %>
+  <% end %>
+  <button id="skillButton">Find the Most Efficient Skill!</button>
+</div>
+
+<div id="results" class="row">
+  <div class="row">
+    <div id="bestWrapper" class="medium-8 columns medium-centered"></div>
+  </div>
+  <table id="resultsTable">
+    <thead>
+      <tr>
+        <th>Spell Name</th>
+        <th>Spell Description</th>
+        <th>Spell DPS</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+<%= javascript_tag "var data = #{@skills.to_json}" %>
