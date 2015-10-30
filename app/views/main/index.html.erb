@@ -61,7 +61,7 @@
 
 <div id="buttonWrapper">
   <%= form_tag do %>
-    <%= submit_tag("Update/Populate Database", { :class=>"button databaseButton" }) %>
+    <%= submit_tag("Update/Populate Database", :class=>"button databaseButton", data: { confirm: "Are you sure you?" } ) %>
   <% end %>
   <button id="skillButton" disabled>Find the Most Efficient Skill!</button>
 </div>
