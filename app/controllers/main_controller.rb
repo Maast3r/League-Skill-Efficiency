@@ -24,25 +24,9 @@ class MainController < ApplicationController
     @skills = Skill.all
   end
   def populate_database
-    getVersion
     getChamps
     index
     render action: 'index'
-  end
-  def getVersion
-    version_uri = URI::HTTPS.build(host: @@base_request,
-                                   path: @@versions_request_path,
-                                   query: {api_key: @@key}.to_query)
-    response = HTTParty.get(version_uri, verify: false)
-    if response.code == 200
-      response = response.parsed_response
-      versionExists = Version.first
-      if versionExists
-        versionExists.update(version: response[0]) unless versionExists.version == response[0]
-      else
-        Version.create(version: response[0])
-      end
-    end
   end
   def getChamps
     champion_uri = URI::HTTPS.build(host: @@base_request,
