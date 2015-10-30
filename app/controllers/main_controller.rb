@@ -21,7 +21,6 @@ class MainController < ApplicationController
   @@versions_request_path = "/api/lol/static-data/na/v1.2/versions"
   @@champion_request_path = "/api/lol/static-data/na/v1.2/champion"
   def index
-    Skill.create(bonus: 3)
     @skills = Skill.all
   end
   def populate_database
