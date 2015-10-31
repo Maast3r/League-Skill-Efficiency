@@ -14,6 +14,9 @@ window.onload = function(){
   $("#champLevel").change(function(){
     getInputs();
   });
+  $("#skillButton").click(function(){
+    performCalculations();
+  });
 
   function getInputs(){
     adInput = document.getElementById("adInput").value;
@@ -58,10 +61,6 @@ window.onload = function(){
       $("#skillButton").attr("disabled", "disabled");
     }
   }
-
-  document.getElementById("skillButton").onclick = function(){
-    performCalculations();
-  };
 
   function displayBestSkill(){
     var resultWrapper = document.getElementById("bestWrapper");
